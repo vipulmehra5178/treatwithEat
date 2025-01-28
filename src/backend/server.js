@@ -11,7 +11,7 @@ const app = express();
 
 // Middleware
 app.use(express.json());
-app.use(cors({ origin: "http://localhost:5173", credentials: true })); // Restrict CORS
+app.use(cors());// Restrict CORS
 
 // MongoDB Connection
 const mongoURI = "mongodb+srv://20bcs5178:20bcs5178@userinfo.zexql.mongodb.net/reservations?retryWrites=true&w=majority&appName=userInfo";

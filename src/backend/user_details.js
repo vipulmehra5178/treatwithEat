@@ -7,7 +7,11 @@ const app = express();
 
 // Middleware
 app.use(express.json());
-app.use(cors()); // Handle CORS issues
+app.use(cors({
+  origin: ['http://localhost:3001', 'https://treatwith-eat.vercel.app'], // List all allowed origins
+  methods: [ 'POST'],
+  credentials: true,
+})); // Handle CORS issues
 
 // MongoDB Connection URI (Replace with your credentials)
 const mongoURI = "mongodb+srv://20bcs5178:20bcs5178@userinfo.zexql.mongodb.net/reservations?retryWrites=true&w=majority&appName=userInfo";

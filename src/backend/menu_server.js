@@ -9,7 +9,11 @@ const app = express();
 const PORT = 5000;
 
 // Middleware
-app.use(cors());
+app.use(cors({
+    origin: ['http://localhost:5000', 'https://treatwith-eat.vercel.app'], // List all allowed origins
+    methods: ['GET'],
+    credentials: true,
+  }));
 app.use(bodyParser.json());
 
 // Connect to MongoDB

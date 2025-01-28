@@ -5,7 +5,7 @@ import Home from './pages/Home';
 import Menu from './pages/menu';
 import About from './pages/about';
 import ReservationForm from './pages/reservationForm';
-import Availability from './pages/Availability';
+import Availability from './pages/availability';
 
 function App() {
   return (

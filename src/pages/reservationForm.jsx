@@ -29,38 +29,39 @@ const ReservationForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
-      const response = await fetch("http://localhost:5000/api/reservation", {
+      const response = await fetch("http://localhost:3000/api/reservation", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        alert(result.message); // Success
-        setFormData({
-          name: "",
-          email: "",
-          phone: "",
-          date: "",
-          time: "",
-          outlet: "",
-          persons: "",
-          customization: "",
-        }); // Clear the form
-      } else {
-        alert("Error submitting reservation!");
+  
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
       }
+  
+      const data = await response.json();
+      alert(data.message); // Success
+  
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        date: "",
+        time: "",
+        outlet: "",
+        persons: "",
+        customization: "",
+      });
     } catch (error) {
       console.error("Error:", error);
       alert("Error submitting reservation!");
     }
   };
+  
 
   const today = new Date().toISOString().split("T")[0]; // Get today's date in YYYY-MM-DD format
 
@@ -223,9 +224,7 @@ const ReservationForm = () => {
           className="w-full bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600"
         >
           Submit
-        </button>
-      </form>
-    </div>
+        </button>      </form>    </div>
   );
 };
 

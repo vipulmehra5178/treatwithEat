@@ -2,9 +2,9 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import NavBar from './components/navBar';
 import Footer from './components/footer';
 import Home from './pages/Home';
-import Menu from './pages/Menu';
+import Menu from './pages/menu';
 import About from './pages/about';
-import ReservationForm from './pages/ReservationForm';
+import ReservationForm from './pages/reservationForm';
 import Availability from './pages/Availability';
 
 function App() {
@@ -24,4 +24,3 @@ function App() {
 }
 
 export default App;
-    

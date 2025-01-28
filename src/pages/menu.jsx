@@ -6,7 +6,7 @@ const Menu = () => {
   useEffect(() => {
     const fetchMenu = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/menu", {
+        const response = await fetch("https://rest-menuapi.onrender.com/api/menu", {
           headers: {
             "Content-Type": "application/json",
           },

@@ -1,5 +1,3 @@
-
-
 import { useEffect, useState } from "react";
 
 const Menu = () => {
@@ -8,11 +6,20 @@ const Menu = () => {
   useEffect(() => {
     const fetchMenu = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/menu");
+        const response = await fetch("http://localhost:5000/api/menu", {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
         const data = await response.json();
         setMenuItems(data);
       } catch (error) {
-        console.error("Error fetching menu items:", error);
+        console.error("Error fetching menu items:", error.message);
       }
     };
 
@@ -33,16 +40,15 @@ const Menu = () => {
         <hr className="w-1/2 mx-auto border-2 border-black"></hr>
         <br />
         <h1 className="text-6xl font-bold text-center mb-8 text-black">
-        🍽️ Our Menu 🍽️
+          🍽️ Our Menu 🍽️
         </h1>
         <hr className="w-1/2 mx-auto border-2 border-black"></hr>
         <br />
 
-
         {/* Dynamically render sections for each category */}
         {Object.entries(groupedMenuItems).map(([category, items]) => (
           <div key={category} className="max-w-8xl mx-auto mb-16">
-            <h2 className="text-3xl font-semibold mb-6 text-black text-center italic uppercase underline"> 
+            <h2 className="text-3xl font-semibold mb-6 text-black text-center italic uppercase underline">
               {category} Section
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 sm:gap-6">
@@ -77,7 +83,8 @@ const Menu = () => {
                   />
                   <h3 className="text-xl font-medium mb-2">{item.name}</h3>
                   <p className="text-gray-600 mb-4">{item.description}</p>
-                  <hr className="border-t border-gray-300 my-2" /> {/* Divider line */}
+                  <hr className="border-t border-gray-300 my-2" />{" "}
+                  {/* Divider line */}
                   <div className="text-right flex justify-end items-center">
                     <span className="font-bold text-lg text-black italic">
                       Rs. {item.price}

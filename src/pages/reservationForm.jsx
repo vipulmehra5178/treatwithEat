@@ -31,7 +31,7 @@ const ReservationForm = () => {
     e.preventDefault();
   
     try {
-      const response = await fetch("http://localhost:3000/api/reservation", {
+      const response = await fetch("https://resto-reservations.onrender.com/api/reservations", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -44,8 +44,9 @@ const ReservationForm = () => {
       }
   
       const data = await response.json();
-      alert(data.message); // Success
+      alert(data.message); // Success message
   
+      // Reset form after successful submission
       setFormData({
         name: "",
         email: "",
@@ -58,9 +59,10 @@ const ReservationForm = () => {
       });
     } catch (error) {
       console.error("Error:", error);
-      alert("Error submitting reservation!");
+      alert("Error submitting reservation! Please try again later.");
     }
   };
+  
   
 
   const today = new Date().toISOString().split("T")[0]; // Get today's date in YYYY-MM-DD format

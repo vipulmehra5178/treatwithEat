@@ -1,8 +1,21 @@
-# React + Vite
+Eats and Treat 🍽️ - Restaurant Website
+Eats and Treat is a full-stack restaurant web application built using React and MongoDB. The website dynamically fetches menu items from an API and displays them for users. Additionally, it includes a reservation form that allows users to book tables, with all reservation details stored in a MongoDB database.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Features
+✅ Interactive UI built with React
+✅ Menu items stored and fetched from a MongoDB-based API
+✅ Reservation system to store user booking details
+✅ Fully responsive design for a seamless experience across desktop
 
-Currently, two official plugins are available:
+🔗 Tech Stack: React, MongoDB, Express.js, Node.js, CSS
+🚀 Live Demo: https://treatwith-eat.vercel.app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+Feel free to star ⭐ the repository and contribute! 😊
+
+
+
+
+
+
+

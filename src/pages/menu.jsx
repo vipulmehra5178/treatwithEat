@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 
 const Menu = () => {
   const [menuItems, setMenuItems] = useState([]);
+  const API_URL = import.meta.env.VITE_API_URL; // ✅ Get from .env
 
   useEffect(() => {
     const fetchMenu = async () => {
       try {
-        const response = await fetch("https://rest-menuapi.onrender.com/api/menu", {
+        const response = await fetch(API_URL, {
           headers: {
             "Content-Type": "application/json",
           },
@@ -24,7 +25,7 @@ const Menu = () => {
     };
 
     fetchMenu();
-  }, []);
+  }, [API_URL]);
 
   // Group menu items by category
   const groupedMenuItems = menuItems.reduce((acc, item) => {
@@ -45,7 +46,6 @@ const Menu = () => {
         <hr className="w-1/2 mx-auto border-2 border-black"></hr>
         <br />
 
-        {/* Dynamically render sections for each category */}
         {Object.entries(groupedMenuItems).map(([category, items]) => (
           <div key={category} className="max-w-8xl mx-auto mb-16">
             <h2 className="text-3xl font-semibold mb-6 text-black text-center italic uppercase underline">
@@ -83,8 +83,7 @@ const Menu = () => {
                   />
                   <h3 className="text-xl font-medium mb-2">{item.name}</h3>
                   <p className="text-gray-600 mb-4">{item.description}</p>
-                  <hr className="border-t border-gray-300 my-2" />{" "}
-                  {/* Divider line */}
+                  <hr className="border-t border-gray-300 my-2" />
                   <div className="text-right flex justify-end items-center">
                     <span className="font-bold text-lg text-black italic">
                       Rs. {item.price}

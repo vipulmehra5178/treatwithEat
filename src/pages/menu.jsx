@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 
 const Menu = () => {
   const [menuItems, setMenuItems] = useState([]);
-  const API_URL = import.meta.env.VITE_API_URL; // ✅ Get from .env
-
+  const API_URL = import.meta.env.VITE_API_URL; 
   useEffect(() => {
     const fetchMenu = async () => {
       try {

@@ -2,10 +2,20 @@ import { useEffect, useState } from "react";
 
 const Menu = () => {
   const [menuItems, setMenuItems] = useState([]);
-  const API_URL = import.meta.env.VITE_API_URL; 
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  
+  // Fallback in case env var is missing — avoid hitting empty string or undefined URL
+  const API_URL = import.meta.env.VITE_API_URL || "https://rest-menuapi.onrender.com/api/menu";
+
   useEffect(() => {
     const fetchMenu = async () => {
       try {
+        setLoading(true);
+        setError(null);
+
+        if (!API_URL) throw new Error("API URL not configured");
+
         const response = await fetch(API_URL, {
           headers: {
             "Content-Type": "application/json",
@@ -17,32 +27,52 @@ const Menu = () => {
         }
 
         const data = await response.json();
+        if (!Array.isArray(data)) {
+          throw new Error("API response is not an array");
+        }
+
         setMenuItems(data);
       } catch (error) {
         console.error("Error fetching menu items:", error.message);
+        setError(error.message);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchMenu();
   }, [API_URL]);
 
-  // Group menu items by category
+  // Group menu items safely — empty array fallback
   const groupedMenuItems = menuItems.reduce((acc, item) => {
-    const { category } = item;
+    const category = item.category || "Uncategorized";
     if (!acc[category]) acc[category] = [];
     acc[category].push(item);
     return acc;
   }, {});
 
+  // UI states for loading and error
+  if (loading) {
+    return <div className="text-center mt-10 text-gray-600">Loading menu...</div>;
+  }
+
+  if (error) {
+    return <div className="text-center mt-10 text-red-600">Failed to load menu: {error}</div>;
+  }
+
+  if (menuItems.length === 0) {
+    return <div className="text-center mt-10 text-gray-600">No menu items found.</div>;
+  }
+
   return (
     <div className="min-h-screen">
       <div className="pt-32 pb-20 px-2 px-10">
-        <hr className="w-1/2 mx-auto border-2 border-black"></hr>
+        <hr className="w-1/2 mx-auto border-2 border-black" />
         <br />
         <h1 className="text-6xl font-bold text-center mb-8 text-black">
           🍽️ Our Menu 🍽️
         </h1>
-        <hr className="w-1/2 mx-auto border-2 border-black"></hr>
+        <hr className="w-1/2 mx-auto border-2 border-black" />
         <br />
 
         {Object.entries(groupedMenuItems).map(([category, items]) => (

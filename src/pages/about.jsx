@@ -1,7 +1,3 @@
-/* eslint-disable no-unused-vars */
-
-//done
-import React from "react";
 
 const About = () => {
   const reviews = [
@@ -58,36 +54,38 @@ const About = () => {
 
   return (
     <div className="min-h-screen">
-      <div className="pt-32 pb-20 px-8">
+      <div className="pt-32 pb-20 px-4 sm:px-8">
         <div className="max-w-6xl mx-auto">
-          {/* About Section */}
           <div className="mb-16">
-          <hr className="w-1/2 mx-auto border-2 border-black"></hr>
-            <br/>
-            <h1 className="text-6xl font-bold text-center mb-12">Our Story</h1>
-            <hr className="w-1/2 mx-auto border-2 border-black"></hr>
-            <br/>
+            <hr className="w-1/2 mx-auto border-2 border-black" />
+            <br />
+            <h1 className="text-4xl sm:text-6xl font-bold text-center mb-12">
+              Our Story
+            </h1>
+            <hr className="w-1/2 mx-auto border-2 border-black" />
+            <br />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <div>
                 <img
                   src="/resto.webp"
-                  className="rounded-lg shadow-lg w-full h-[400px] object-cover"
+                  alt="Eats & Treats Restaurant"
+                  className="rounded-lg shadow-lg w-full h-auto max-h-[400px] object-cover"
                 />
               </div>
-              <div className="space-y-4">
-                <p className="text-lg">
+              <div className="space-y-4 text-base sm:text-lg">
+                <p>
                   Welcome to Eats & Treats, where we bring together the best of
                   Indian, Italian and Chinese cuisines under one roof.
                   Established in 2020, we&apos;ve been delighting food lovers
                   with our diverse menu and warm hospitality in the heart of the
                   city.
                 </p>
-                <p className="text-lg">
+                <p>
                   Our talented chefs craft each dish with care and expertise,
                   bringing authentic flavors from traditional recipes while
                   adding their own creative touches.
                 </p>
-                <p className="text-lg">
+                <p>
                   At Eats & Treats, we believe in using only high-quality
                   ingredients to ensure every meal is a memorable experience.
                   Our cozy ambiance and friendly service make this the perfect
@@ -98,47 +96,49 @@ const About = () => {
             </div>
           </div>
 
-          {/* Location Section */}
           <div className="mb-16">
-            <h2 className="text-4xl font-bold text-center mb-8">
+            <h2 className="text-3xl sm:text-4xl font-bold text-center mb-8">
               Find Us Here
             </h2>
-            <div className="bg-white/80 rounded-lg shadow-lg p-6">
+            <div className="bg-white/80 rounded-lg shadow-lg p-4 sm:p-6">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d224408.00730251477!2d77.51599554999999!3d28.498359799999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cea64b8f89aef%3A0xec0ccabb5317962e!2sGreater%20Noida%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1737811721683!5m2!1sen!2sin"
                 width="100%"
-                height="400"
+                height="300"
                 style={{ border: 0 }}
                 allowFullScreen=""
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 className="rounded-lg"
               />
-              <div className="mt-6 text-center">
-                <p className="text-xl font-semibold">
-                  23/ VB Lisa Street,Greater Noida <br></br>
+              <div className="mt-6 text-center text-base sm:text-xl font-semibold">
+                <p>
+                  23/ VB Lisa Street, Greater Noida <br />
                   UP-201310 , India
                 </p>
-                <p className="text-lg">Open Daily: 11:00 AM - 11:00 PM</p>
-                <p className="text-lg">Phone: +91 12345 67890</p>
+                <p className="mt-2 text-lg sm:text-base">
+                  Open Daily: 11:00 AM - 11:00 PM
+                </p>
+                <p className="text-lg sm:text-base">Phone: +91 12345 67890</p>
               </div>
             </div>
           </div>
 
-          {/* Reviews Section */}
           <div>
-            <h2 className="text-4xl font-bold text-center mb-8">
+            <h2 className="text-3xl sm:text-4xl font-bold text-center mb-8">
               What Our Customers Say
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {reviews.map((review, index) => (
                 <div
                   key={index}
-                  className="bg-white/80 rounded-lg shadow-lg p-6 hover:shadow-xl transition"
+                  className="bg-white/80 rounded-lg shadow-lg p-4 sm:p-6 hover:shadow-xl transition"
                 >
-                  <p className="font-semibold mb-1">{review.name}</p>
+                  <p className="font-semibold mb-1 text-base sm:text-lg">
+                    {review.name}
+                  </p>
                   <div className="flex items-center mb-1">
-                  <div className="flex text-yellow-400 space-x-1">
+                    <div className="flex text-yellow-400 space-x-1">
                       {[...Array(review.rating)].map((_, i) => (
                         <svg
                           key={i}
@@ -151,7 +151,7 @@ const About = () => {
                       ))}
                     </div>
                   </div>
-                  <p className="text-gray-700 mb-4">{review.comment}</p>
+                  <p className="text-gray-700 mb-4 text-sm sm:text-base">{review.comment}</p>
                   <div className="text-sm text-gray-500">
                     <p>{review.date}</p>
                   </div>

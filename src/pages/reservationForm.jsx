@@ -87,10 +87,10 @@ const ReservationForm = () => {
         persons: formData.persons,
         customization: formData.customization.trim() || "", 
       };
-  const booking_API_URL = import.meta.env.VITE_API_BOOKING_API ;
+  
 
       const response = await fetch(
-        `${booking_API_URL}/api/reservations`,
+        `${import.meta.env.VITE_API_BOOKING_API}/api/reservations`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

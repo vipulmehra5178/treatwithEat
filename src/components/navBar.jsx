@@ -68,8 +68,8 @@ const NavBar = () => {
           {[
             { name: "Home", path: "/" },
             { name: "Menu", path: "/menu" },
-            { name: "Availability", path: "/availability" },
-            { name: "Reservations", path: "/reservations" },
+            { name: "Availability", path: "/reservations" },
+            { name: "Reservations", path: "/reservation-form" },
             { name: "About", path: "/about" },
           ].map((link, index) => (
             <Link

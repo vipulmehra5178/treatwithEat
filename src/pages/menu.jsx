@@ -4,9 +4,8 @@ const Menu = () => {
   const [menuItems, setMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  
-  // Fallback in case env var is missing — avoid hitting empty string or undefined URL
-  const API_URL = import.meta.env.VITE_API_URL || "https://rest-menuapi.onrender.com/api/menu";
+
+  const API_URL = import.meta.env.VITE_API_URL ;
 
   useEffect(() => {
     const fetchMenu = async () => {
@@ -43,7 +42,6 @@ const Menu = () => {
     fetchMenu();
   }, [API_URL]);
 
-  // Group menu items safely — empty array fallback
   const groupedMenuItems = menuItems.reduce((acc, item) => {
     const category = item.category || "Uncategorized";
     if (!acc[category]) acc[category] = [];
@@ -51,7 +49,6 @@ const Menu = () => {
     return acc;
   }, {});
 
-  // UI states for loading and error
   if (loading) {
     return <div className="text-center mt-10 text-gray-600">Loading menu...</div>;
   }
@@ -64,54 +61,60 @@ const Menu = () => {
     return <div className="text-center mt-10 text-gray-600">No menu items found.</div>;
   }
 
+  const openModal = (imgSrc) => {
+    const modal = document.createElement("div");
+    modal.className =
+      "fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 p-4";
+
+    modal.onclick = (e) => {
+      if (e.target === modal) {
+        document.body.removeChild(modal);
+      }
+    };
+
+const img = document.createElement("img");
+img.src = imgSrc;
+img.className =
+  "max-w-full max-h-[90vh] object-contain rounded-lg shadow-lg";
+
+
+    modal.appendChild(img);
+    document.body.appendChild(modal);
+  };
+
   return (
-    <div className="min-h-screen">
-      <div className="pt-32 pb-20 px-2 px-10">
+    <div className="min-h-screen bg-gray-50">
+      <div className="pt-24 pb-16 px-4 sm:px-6 md:px-10 max-w-7xl mx-auto">
         <hr className="w-1/2 mx-auto border-2 border-black" />
         <br />
-        <h1 className="text-6xl font-bold text-center mb-8 text-black">
+        <h1 className="text-5xl sm:text-6xl font-bold text-center mb-8 text-black">
           🍽️ Our Menu 🍽️
         </h1>
         <hr className="w-1/2 mx-auto border-2 border-black" />
         <br />
 
         {Object.entries(groupedMenuItems).map(([category, items]) => (
-          <div key={category} className="max-w-8xl mx-auto mb-16">
-            <h2 className="text-3xl font-semibold mb-6 text-black text-center italic uppercase underline">
+          <div key={category} className="mb-16">
+            <h2 className="text-2xl sm:text-3xl font-semibold mb-6 text-black text-center italic uppercase underline">
               {category} Section
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 sm:gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
               {items.map((item) => (
                 <div
                   key={item._id}
-                  className="p-4 bg-white/80 rounded-lg shadow-md hover:shadow-lg transition"
+                  className="p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition cursor-pointer"
+                  onClick={() => openModal(item.image)}
                 >
                   <img
-                    src={item.image}
-                    onClick={() => {
-                      const modal = document.createElement("div");
-                      modal.className =
-                        "fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50";
-
-                      modal.onclick = (e) => {
-                        if (e.target === modal) {
-                          document.body.removeChild(modal);
-                        }
-                      };
-
-                      const img = document.createElement("img");
-                      img.src = item.image;
-                      img.className =
-                        "w-[500px] h-[500px] object-cover rounded-lg";
-
-                      modal.appendChild(img);
-                      document.body.appendChild(modal);
-                    }}
-                    alt={item.name}
-                    className="w-full h-48 object-cover rounded-lg mb-4"
-                  />
-                  <h3 className="text-xl font-medium mb-2">{item.name}</h3>
-                  <p className="text-gray-600 mb-4">{item.description}</p>
+  src={item.image}
+  alt={item.name}
+  className="w-full h-56 sm:h-64 object-cover rounded-lg mb-4"
+  loading="lazy"
+/>
+                  <h3 className="text-lg sm:text-xl font-medium mb-2">{item.name}</h3>
+                  <p className="text-gray-600 mb-4 text-sm sm:text-base line-clamp-3">
+                    {item.description}
+                  </p>
                   <hr className="border-t border-gray-300 my-2" />
                   <div className="text-right flex justify-end items-center">
                     <span className="font-bold text-lg text-black italic">

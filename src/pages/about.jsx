@@ -113,7 +113,7 @@ const About = () => {
               />
               <div className="mt-6 text-center text-base sm:text-xl font-semibold">
                 <p>
-                  23/ VB Lisa Street, Greater Noida <br />
+                  23/ Satya Street, Greater Noida <br />
                   UP-201310 , India
                 </p>
                 <p className="mt-2 text-lg sm:text-base">

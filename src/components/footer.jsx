@@ -17,7 +17,7 @@ const Footer = () => (
 
         <div className="text-center md:text-left">
           <h4 className="text-xl font-bold mb-4">Location</h4>
-          <p className="mb-2">23 Rajouri Street</p>
+          <p className="mb-2"> 23/ Satya Street</p>
           <p className="mb-2">Greater Noida</p>
           <p className="mb-2">UP-201310 , India</p>
         </div>

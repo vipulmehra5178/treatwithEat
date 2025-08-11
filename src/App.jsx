@@ -5,7 +5,7 @@ import Home from "./pages/Home";
 import About from "./pages/about";
 import ReservationForm from "./pages/reservationForm";
 import Reservations from "./pages/Reservations";
-import Menu from "./pages/Menu";
+import Menu from './pages/menu'
 function App() {
   return (
     <Router>
